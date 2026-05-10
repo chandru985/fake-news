@@ -9,11 +9,25 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
-API_KEY = os.getenv("NEWS_API_KEY")
+API_KEY = os.getenv("NEWS_API_KEY", "01005f5f946a4d8b9c232a8ee206c88d")
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key = os.getenv("SECRET_KEY", "default_secret_key_123")
 
 # ---------------- DATABASE ----------------
+def init_db():
+    conn = sqlite3.connect(os.path.join(BASE_DIR, "database.db"))
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+init_db()
 def get_db():
     return sqlite3.connect("database.db")
 
