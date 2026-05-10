@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="container">
+    <h2>📝 Register</h2>
+
+    <form method="POST">
+         <div class="input-group">
+        <i>👤</i>
+        <input type="text" name="username" placeholder="Enter Username" required>
+    </div>
+
+   <div class="input-group">
+    <i>🔒</i>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+</div>
+
+    <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account?</p>
+    <a href="/login"><button>Login</button></a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p style="color:green;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+</script>
+</body>
+</html>

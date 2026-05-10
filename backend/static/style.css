@@ -1,0 +1,403 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;   /* 🔥 FIX */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: Arial, sans-serif;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 350px;
+    padding: 25px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    text-align: center;
+    color: white;
+}
+
+.container {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Textarea */
+textarea {
+    width: 90%;
+    height: 120px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-top: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+/* Focus effect */
+textarea:focus {
+    border: 2px solid #667eea;
+    box-shadow: 0 0 5px rgba(102,126,234,0.5);
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background:yellow;
+}
+
+/* Actions */
+.actions {
+    margin-top: 15px;
+}
+
+/* Logout button */
+.logout {
+    background: red;
+    color: black;
+}
+
+/* Result box */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* Fake news (red) */
+.fake {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+/* Real news (green) */
+.real {
+    background: rgba(0, 255, 0, 0.3);
+}
+
+input {
+    width: 87%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 14px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+/* Focus */
+input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+input::placeholder {
+    color: #777;
+    font-size: 13px;
+}
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.input-group input {
+    padding-left: 35px;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: #121212;
+}
+
+/* live news styles */
+/* News page container */
+.news-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+.news-container h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Grid layout */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Card */
+.news-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image */
+.news-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* Content */
+.news-content {
+    padding: 15px;
+}
+
+/* Title */
+.news-content h3 {
+    font-size: 18px;
+}
+
+/* Description */
+.news-content p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Button */
+.news-content button {
+    background: white;
+    color: #333;
+}
+
+/* Back button */
+.back-btn {
+    margin-top: 20px;
+    background: red;
+    color: white;
+}
+
+
+
+
+/* responsive styles */
+/* 📱 Responsive Design */
+
+/* Tablet view */
+@media (max-width: 992px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile view */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .news-container {
+        padding: 10px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-card img {
+        height: 150px;
+    }
+
+    .news-content h3 {
+        font-size: 16px;
+    }
+
+    .news-content p {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* dark mode */
+/* 🌙 Dark Mode */
+.dark-mode {
+    background: #121212 !important;
+}
+
+/* Container dark */
+.dark-mode .container {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* Inputs */
+.dark-mode input,
+.dark-mode textarea {
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+}
+
+/* Buttons */
+.dark-mode button {
+    background: red;
+    color: white;
+}
+
+/* Toggle button style */
+.dark-toggle {
+    margin-bottom: 10px;
+    background: red;
+    color: black;
+}
+
+
+/* style for index.html */
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    input {
+        width: 80%;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* 📱 Tablet */
+@media (max-width: 992px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* spinner loader style */
+/* Loader spinner */
+.loader {
+    margin: 20px auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #19c37d;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* fix mobile */
+@media (max-width: 600px) {
+    body {
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .wrapper {
+        min-height: 100dvh;   /* 🔥 modern mobile fix */
+    }
+}

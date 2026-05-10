@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="container">
+   <button onclick="toggleDarkMode()" class="dark-toggle" id="themeBtn">🌙</button>
+
+    <h1>📰 Fake News Detector</h1>
+
+   <form action="/predict" method="post" class="chat-input" onsubmit="showLoader()">
+    <div id="loader" class="loader" style="display:none;"></div>
+        <textarea name="news" placeholder="Paste news here..." required></textarea>
+        <button type="submit">🚀 Analyze News</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result 
+        {% if prediction == 'Fake News' %}
+            fake
+        {% else %}
+            real
+        {% endif %}
+    ">
+        <h2>{{ prediction }}</h2>
+        <p>Confidence: {{ confidence }}%</p>
+    </div>
+    {% endif %}
+
+    <div class="actions">
+        <a href="/news"><button>🌐 Live News</button></a>
+        <a href="/logout"><button class="logout">Logout</button></a>
+    </div>
+
+</div>
+</div>
+
+<script>
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById("themeBtn");
+
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        btn.textContent = "☀️";   // change to sun
+    } else {
+        localStorage.setItem("theme", "light");
+        btn.textContent = "🌙";   // change to moon
+    }
+}
+
+// Load saved theme
+window.onload = function() {
+    const btn = document.getElementById("themeBtn");
+
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        btn.textContent = "☀️";   // already dark → show sun
+    } else {
+        btn.textContent = "🌙";   // light mode → show moon
+    }
+}
+</script>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+</body>
+</html>

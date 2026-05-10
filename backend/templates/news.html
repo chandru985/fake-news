@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="news-container">
+    <h1>🌐 Live News</h1>
+
+    <div class="news-grid">
+        {% for article in articles %}
+        <div class="news-card">
+
+            {% if article.urlToImage %}
+            <img src="{{ article.urlToImage }}" alt="news image">
+            {% endif %}
+
+            <div class="news-content">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+
+                <form action="/predict" method="post">
+                    <input type="hidden" name="news" value="{{ article.title }}">
+                    <button>Check Fake News</button>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/"><button class="back-btn">⬅ Back</button></a>
+</div>
+
+</body>
+</html>
